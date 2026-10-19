@@ -1,9 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
-import { GoogleOAuthProvider } from "@react-oath/google";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const CLIENT_ID =
   "33889025381-3cvbjqsgmohere4vfr5pp5j0o1rp51gr.apps.googleusercontent.com";
