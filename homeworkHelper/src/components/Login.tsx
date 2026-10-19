@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom";
 import {useAuth } from '../components/AuthContext'; 
-
+// this should ask for a uesrname if it is a new google account 
 function Login() {
     const {user, loading, signInWithGoogle } = useAuth();
 

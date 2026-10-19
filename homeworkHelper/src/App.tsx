@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
-import LogSignup from "./components/LogSignup";
+import GoogleAuth from "./components/GoogleAuth";
 
 function App(){
   const [user, setUser] = useState<User | null>(null);
@@ -20,3 +20,12 @@ function App(){
     loadSession(); 
   })
 }
+
+return (
+  <>
+  <LogSignup>
+
+  </LogSignup>
+  
+  </>
+)
