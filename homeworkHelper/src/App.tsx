@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import type { ReactNode } from "react";
 import { useAuth } from "./components/AuthContext";
 import Login from "./pages/Login";
-import UserDashboard from "./pages/UserDashboard";
+import UserDashboard from "./pages/UserDashboad";
 import Profile from "./pages/Profile";
 
 function ProtectedRoute({ children }: { children: ReactNode }) {
