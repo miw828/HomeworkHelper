@@ -1,34 +1,35 @@
-import { GoogleLogin, type CredentialResponse } from "@react-oauth/google"
+import { GoogleLogin, type CredentialResponse } from "@react-oauth/google";
+import { supabase } from "../services/supabaseClient";
 
+export default function LogSignup() {
+  const handleSuccess = async (credentialResponse: CredentialResponse) => {
+    if (!credentialResponse.credential) {
+      console.error("No Google credential returned");
+      return;
+    }
 
-function LogSignup(){
-   
-   const handleSuccess = (credentialResponse: CredentialResponse) => {
-    console.log("Google login successful!");
-    console.log(credentialResponse);
-   };
+    const { error } = await supabase.auth.signInWithIdToken({
+      provider: "google",
+      token: credentialResponse.credential,
+    });
 
-   const handleError = () => {
-    console.log("Google login failed");
-   }
+    if (error) console.error("Supabase sign-in failed:", error.message);
+    // AuthContext picks up the new session; Login redirects to the dashboard.
+    // TODO: new Google account -> questionnaire, existing -> dashboard
+  };
 
+  const handleError = () => {
+    console.error("Google login failed");
+  };
 
-   // need to include an if case - if the google id has information already stored it should go straight to the dashboard
-   // if it's not familiar it should go to the questionaire. 
-   return (
+  return (
     <>
-    <h1> Login or Signup </h1>
-    
-    <GoogleLogin
-    onSuccess={handleSuccess}
-    onError={handleError}
-    text= "continue_with"
-    />
-
-    
-    
-    
+      <h1>Login or Signup</h1>
+      <GoogleLogin
+        onSuccess={handleSuccess}
+        onError={handleError}
+        text="continue_with"
+      />
     </>
-   )
+  );
 }
-export default LogSignup; 
